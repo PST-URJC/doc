@@ -32,7 +32,7 @@ class ArbolBinario:
 
     def tamanio(self):
         tamanio = 0
-        if self.dato:
+        if self.dato != None:
             tamanio += 1
         if self.izquierdo:
             tamanio += self.izquierdo.tamanio()
@@ -40,11 +40,14 @@ class ArbolBinario:
             tamanio += self.derecho.tamanio()
         return tamanio
 
-        
 if __name__ == "__main__":
     a = ArbolBinario(5)
     a.insertar(3)
     a.insertar(8)
     a.insertar(6)
     a.insertar(3)
+    print ("Tamaño arbol:", a.tamanio())
+    a.insertar(9)
+    a.insertar(12)
+    a.insertar(0)
     print ("Tamaño arbol:", a.tamanio())
