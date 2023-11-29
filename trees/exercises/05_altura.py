@@ -39,7 +39,7 @@ class ArbolBinario:
         if self.derecho:
             tamanio += self.derecho.tamanio()
         return tamanio
-    
+
     def altura(self):
         altura_derecho = 0
         altura_izquierdo = 0

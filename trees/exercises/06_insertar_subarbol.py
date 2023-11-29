@@ -44,7 +44,7 @@ class ArbolBinario:
         if self.derecho:
             tamanio += self.derecho.tamanio()
         return tamanio
-    
+
     def altura(self):
         altura_derecho = 0
         altura_izquierdo = 0
@@ -57,7 +57,7 @@ class ArbolBinario:
         if altura_izquierdo > altura_derecho:
             return 1 + altura_izquierdo
         return 1 + altura_derecho
-    
+
     def insertar_arbol(self, arbol):
         if not self.dato:
             self.dato = arbol.dato
@@ -88,4 +88,3 @@ if __name__ == "__main__":
     c.insertar(12)
     a.insertar_arbol(c)
     a.pintar_mayor_a_menor()
-
