@@ -1,8 +1,6 @@
 class ArbolBinario:
     def __init__(self):
-        self.dato = None
-        self.izquierdo = None
-        self.derecho = None
+        self.init(None)
 
     def __init__(self, dato):
         self.dato = dato
@@ -48,7 +46,7 @@ class ArbolBinario:
     def altura(self):
         altura_derecho = 0
         altura_izquierdo = 0
-        if not self.dato:
+        if self.dato == None:
            return 0
         if self.izquierdo:
            altura_izquierdo = self.izquierdo.altura()
@@ -58,34 +56,19 @@ class ArbolBinario:
             return 1 + altura_izquierdo
         return 1 + altura_derecho
 
-    def insertar_arbol(self, arbol):
-        if not self.dato:
-            self.dato = arbol.dato
-            self.izquierdo = arbol.izquierdo
-            self.derecho = arbol.derecho
-        elif arbol.dato < self.dato:
-            if not self.izquierdo:
-                self.izquierdo = arbol
-            else:
-                self.izquierdo.insertar_arbol(arbol)
-        else:
-            if not self.derecho:
-                self.derecho = arbol
-            else:
-                self.derecho.insertar_arbol(arbol)
-
     def buscar(self, dato):
-        if not self.dato:
+        if self.dato == None:
             return False
         elif self.dato == dato:
             return True
         else:
             if not self.derecho and self.izquierdo:
-                return self.izquierdo.borrar(dato)
+                return self.izquierdo.buscar(dato)
             elif not self.izquierdo and self.derecho:
-                return self.derecho.borrar(dato)
+                return self.derecho.buscar(dato)
             elif self.izquierdo and self.derecho:
-                return self.derecho.borrar(dato) or self.izquierdo.borrar(dato)
+                return self.derecho.buscar(dato) or self.izquierdo.buscar(dato)
+        return False
 
     def como_lista(self):
         if self.dato == None:
@@ -102,6 +85,7 @@ class ArbolBinario:
             return False
         restantes = []
         if self.dato == dato:
+            self.dato == None
             if self.izquierdo:
                 restantes += self.izquierdo.como_lista()
             if self.derecho:
@@ -121,6 +105,9 @@ class ArbolBinario:
             return self.derecho.borrar(dato) or self.izquierdo.borrar(dato)
         return False
 
+def imprimir_separador():
+    print("---------")
+
 if __name__ == "__main__":
     a = ArbolBinario(10)
     a.insertar(4)
@@ -131,14 +118,25 @@ if __name__ == "__main__":
     a.insertar(2)
     a.insertar(1)
     print("tamaño(a):", a.tamanio())
+    imprimir_separador()
     a.pintar_menor_a_mayor()
+    imprimir_separador()
+    a.pintar_mayor_a_menor()
+    imprimir_separador()
+    print("buscar(0):", a.buscar(0))
+    print("buscar(2):", a.buscar(2))
+    print("buscar(3):", a.buscar(3))
+    print("buscar(99):", a.buscar(99))
+    imprimir_separador()
+    print("como lista:", a.como_lista())
+    imprimir_separador()
     print("borrar(2):", a.borrar(2))
     print("borrar(17):", a.borrar(17))
     print("borrar(2):", a.borrar(2))
-    print("-----")
+    imprimir_separador()
     print("tamaño(a):", a.tamanio())
     a.pintar_menor_a_mayor()
-    print("-----")
+    imprimir_separador()
     print("borrar(10):", a.borrar(10))
     print("tamaño(a):", a.tamanio())
     a.pintar_menor_a_mayor()
