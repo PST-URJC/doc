@@ -7,7 +7,20 @@ class ArbolBinario:
         self.izquierdo = None
         self.derecho = None
 
+    def buscar(self, dato):
+        if self.dato == dato:
+            return True
+        if self.izquierdo and self.derecho == None:
+            return self.izquierdo.buscar(dato)
+        elif self.derecho and self.izquierdo == None:
+            return self.derecho.buscar(dato)
+        elif self.derecho and self.izquierdo:
+            return self.derecho.buscar(dato) or self.izquierdo.buscar(dato)
+        return False
+
     def insertar(self, dato):
+        if self.buscar(dato):
+            return False
         if dato < self.dato:
             if not self.izquierdo:
                 self.izquierdo = ArbolBinario(dato)
@@ -20,9 +33,7 @@ class ArbolBinario:
                 return True
             else:
                 return self.derecho.insertar(dato)
-        else:
-            return False
-
+        return False
 
     def como_csv(self):
         return self.arbol_como_csv()[:-1]
